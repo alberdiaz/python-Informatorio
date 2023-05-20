@@ -187,6 +187,22 @@ def editar_inmueble(*args):
 def eliminar_inmueble(*args):
      inmuebles.pop(args)
      return True
+
+
+def buscar_por_presupuesto(inmuebles):
+    print("----- Buscar inmuebles por presupuesto -----")
+    presupuesto = int(raw_input("Ingrese el presupuesto máximo: "))
+
+    inmuebles_encontrados = []
+
+    for inmueble in inmuebles:
+        if inmueble['estado'] in ['Disponible', 'Reservado']:
+            precio = calcular_precio(inmueble)
+            if precio <= presupuesto:
+                inmueble['precio'] = precio
+                inmuebles_encontrados.append(inmueble)
+
+    return inmuebles_encontrados
 ################################################################################################################
 while True:
 
